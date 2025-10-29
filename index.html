@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adwait Ahirekar | Portfolio</title>
+  <style>
+    /* ------------------ Global ------------------ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #020202, #0a0a0a);
+      color: #eaeaea;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #00bcd4;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover { color: #26e4ff; }
+
+    .container {
+      padding: 80px 10%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 2em;
+      margin-bottom: 25px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, #00bcd4, transparent);
+    }
+
+    /* ------------------ Navbar ------------------ */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0, 188, 212, 0.2);
+    }
+
+    nav div strong {
+      font-size: 1.3em;
+      letter-spacing: 1px;
+      color: #00bcd4;
+    }
+
+    nav a {
+      margin: 0 18px;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #00bcd4;
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ------------------ Hero Section ------------------ */
+    .hero {
+      text-align: center;
+      padding: 100px 0 50px;
+    }
+
+    .hero h1 {
+      font-size: 2.8em;
+      color: #00bcd4;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      color: #aaa;
+      letter-spacing: 0.5px;
+    }
+
+    /* ------------------ Lists ------------------ */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 12px;
+      line-height: 1.8;
+    }
+
+    /* ------------------ Achievements ------------------ */
+    .achievement-card {
+      text-align: center;
+      padding: 20px;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.03);
+      width: 230px;
+    }
+
+    .achievement-card img {
+      width: 120px;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 15px rgba(0,188,212,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(0,188,212,0.25);
+    }
+
+    .achievement-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .achievement-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    /* ------------------ Contact Form ------------------ */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      max-width: 500px;
+      margin: 0 auto 80px;
+    }
+
+    .form-group {
+      position: relative;
+      width: 100%;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 188, 212, 0.3);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      color: #aaa;
+      font-size: 0.9rem;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #00bcd4;
+      box-shadow: 0 0 8px rgba(0,188,212,0.4);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:focus + label,
+    .form-group textarea:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 10px;
+      font-size: 0.8rem;
+      color: #00bcd4;
+      background: #000;
+      padding: 0 6px;
+    }
+
+    .btn-submit {
+      background-color: #ff465a;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #0097a7;
+      transform: translateY(-3px);
+      box-shadow: 0 0 10px rgba(0,188,212,0.4);
+    }
+
+    /* ------------------ Footer ------------------ */
+    footer {
+      text-align: center;
+      padding: 25px 0;
+      font-size: 0.9em;
+      color: #888;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      background: #010101;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div><strong>Adwait Ahirekar</strong></div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Adwait Ahirekar</h1>
+    <p>Junior Mechanical Engineer | Robotics & Automation Enthusiast</p>
+  </div>
+
+  <div class="container" id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>
+      I’m a Junior Mechanical Engineer passionate about robotics, design, and manufacturing.
+      Experienced with SolidWorks, AutoCAD, and hands-on manufacturing processes like 3D printing,
+      machining, and laser cutting. I enjoy turning mechanical ideas into working prototypes.
+    </p>
+  </div>
+
+  <div class="container" id="education">
+    <h2 class="section-title">Education</h2>
+    <ul>
+      <li><strong>Pimpri Chinchwad College of Engineering (PCCoE), Pune</strong> – Bachelor of Engineering, Mechanical (Present)</li>
+      <li>Vidya Valley North Point Junior College – HSC, 2023</li>
+      <li>St. Ursula High School – SSC, 2021</li>
+    </ul>
+  </div>
+
+  <div class="container" id="skills">
+    <h2 class="section-title">Skills</h2>
+    <ul>
+      <li><strong>Software:</strong> SolidWorks, AutoCAD, CATIA, Cura</li>
+      <li><strong>Manufacturing:</strong> 3D Printing, Lathe Machining, Laser Cutting, Engraving</li>
+      <li><strong>Soft Skills:</strong> Teamwork, Leadership, Self-learning</li>
+      <li><strong>Non-Technical:</strong> Marketing, Management</li>
+    </ul>
+  </div>
+
+  <div class="container" id="achievements">
+    <h2 class="section-title">Achievements</h2>
+    <div class="achievement-wrapper">
+      <div class="achievement-card">
+        <img src="https://roverchallenge.org/wp-content/uploads/2025/10/Short_White-1024x529.png" alt="IRC Logo">
+        <p><strong>International Rover Challenge (IRC) 2025</strong><br>BITS Goa — Ranked 19th Globally</p>
+      </div>
+
+      <div class="achievement-card">
+        <img src="https://i.ibb.co/qMDVFbQW/8b5907d6bee8c320e0bfb9dd017e62a0-x3.jpg" alt="Robocon Logo">
+        <p><strong>DD Robocon 2025</strong><br>IIT Delhi — AIR 9</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <p style="color:#aaa; max-width:600px; margin:10px auto 40px;">
+      Have a question, idea, or opportunity? Let’s collaborate — drop me a message below.
+    </p>
+
+    <form class="contact-form" action="https://submit-form.com/bTq2wXn3N" method="POST">
+      <div class="form-group">
+        <input id="first-name" name="first-name" type="text" required />
+        <label for="first-name">First Name</label>
+      </div>
+      <div class="form-group">
+        <input id="last-name" name="last-name" type="text" required />
+        <label for="last-name">Last Name</label>
+      </div>
+      <div class="form-group">
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <label for="message">Message</label>
+      </div>
+      <button type="submit" class="btn-submit">Send Message</button>
+    </form>
+  </div>
+
+  <footer>
+    © 2025 Adwait Ahirekar | Designed with passion for mechanics & robotics
+  </footer>
+</body>
+</html>

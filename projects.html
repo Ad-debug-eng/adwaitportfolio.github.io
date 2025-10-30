@@ -13,26 +13,22 @@
       color: #fff;
     }
 
-    nav {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 20px 50px;
-      background: rgba(0, 0, 0, 0.85);
-      position: sticky;
-      top: 0;
+    /* Navbar copied exactly from index.html */
+    nav{
+      width:calc(100% - 40px);
+      margin:12px auto;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;padding:12px 18px;border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,255,255,0.02);
+      position:sticky;top:12px;z-index:50;
+      backdrop-filter: blur(6px);
     }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 500;
-    }
-
-    nav a:hover, nav a.active {
-      color: #00bcd4;
-    }
+    .brand{font-weight:700;color:#e63946;letter-spacing:0.6px}
+    .navlinks{display:flex;gap:18px}
+    .navlinks a{color:#b6b9bb;font-weight:600;padding:8px;border-radius:8px;text-decoration:none}
+    .navlinks a:hover{color:#fff;background:rgba(255,255,255,0.02)}
+    .navlinks a.active{color:#fff;background:rgba(255,255,255,0.02)}
 
     .header {
       text-align: center;
@@ -104,11 +100,15 @@
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="resume.html">Resume</a>
-    <a href="projects.html" class="active">Projects</a>
-    <a href="contact.html">Contact</a>
+  <!-- Updated navbar -->
+  <nav role="navigation" aria-label="Primary navigation">
+    <div class="brand">Adwait Ahirekar</div>
+    <div class="navlinks" role="menubar">
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="resume.html" role="menuitem">Resume</a>
+      <a href="projects.html" role="menuitem" class="active">Projects</a>
+      <a href="contact.html" role="menuitem">Contact</a>
+    </div>
   </nav>
 
   <section class="header">
@@ -118,18 +118,18 @@
   <section class="projects-section">
     <!-- Project 1 -->
     <div class="project">
-  <img src="https://i.ibb.co/YMH3y1w/Whats-App-Image-2025-10-28-at-16-31-19-5c6a6166.jpg" alt="IRC 2025 Rover — Team Automatons">
-  <div class="project-text">
-    <h2>IRC 2025 Rover – Team Automatons</h2>
-    <p>
-      Participated in <strong>International Rover Challenge 2025</strong> at <strong>BITS Pilani Goa</strong>, achieving a
-      <strong>19th global rank</strong>. Contributed to the mechanical design and development of a
-      <strong>6-wheel rocker-bogie rover</strong> with a <strong>turret-mounted robotic arm</strong> for sample collection
-      and manipulation tasks. Focus areas included <strong>chassis optimization, wheel geometry for improved traction,</strong>
-      and <strong>structural integrity</strong>. Validated performance through CAD modelling, stress analysis, and iterative field testing.
-    </p>
-  </div>
-</div>
+      <img src="https://i.ibb.co/YMH3y1w/Whats-App-Image-2025-10-28-at-16-31-19-5c6a6166.jpg" alt="IRC 2025 Rover — Team Automatons">
+      <div class="project-text">
+        <h2>IRC 2025 Rover – Team Automatons</h2>
+        <p>
+          Participated in <strong>International Rover Challenge 2025</strong> at <strong>BITS Pilani Goa</strong>, achieving a
+          <strong>19th global rank</strong>. Contributed to the mechanical design and development of a
+          <strong>6-wheel rocker-bogie rover</strong> with a <strong>turret-mounted robotic arm</strong> for sample collection
+          and manipulation tasks. Focus areas included <strong>chassis optimization, wheel geometry for improved traction,</strong>
+          and <strong>structural integrity</strong>. Validated performance through CAD modelling, stress analysis, and iterative field testing.
+        </p>
+      </div>
+    </div>
 
     <!-- Project 2 -->
     <div class="project">

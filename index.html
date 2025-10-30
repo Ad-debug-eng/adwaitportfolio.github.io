@@ -1,332 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Adwait Ahirekar | Portfolio</title>
+  <meta name="description" content="Adwait Ahirekar — Mechanical Engineering Student | Robotics & Automation Enthusiast" />
   <style>
-    /* ------------------ Global ------------------ */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+    /* ---------- Theme variables ---------- */
+    :root{
+      --bg:#0b0e10;           /* deep steel gray */
+      --panel:#111416;
+      --muted:#b6b9bb;
+      --accent:#e63946;       /* soft orange */
+      --accent-strong:#ed641f;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --maxw:1200px;
+      --ff: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top left, #020202, #0a0a0a);
-      color: #eaeaea;
-      line-height: 1.6;
+    /* ---------- Basic Reset ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:var(--ff);
+      background:var(--bg);
+      color:#e9ecef;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+      overflow-x:hidden;
     }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
 
-    a {
-      color: #00bcd4;
-      text-decoration: none;
-      transition: color 0.3s ease;
+    /* ---------- Layout ---------- */
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:20px}
+    nav{
+      width:calc(100% - 40px);
+      margin:12px auto;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;padding:12px 18px;border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,255,255,0.02);
+      position:sticky;top:12px;z-index:50;
+      backdrop-filter: blur(6px);
     }
-    a:hover { color: #26e4ff; }
+    .brand{font-weight:700;color:var(--accent);letter-spacing:0.6px}
+    .navlinks{display:flex;gap:18px}
+    .navlinks a{color:var(--muted);font-weight:600;padding:8px;border-radius:8px}
+    .navlinks a:hover{color:#fff;background:rgba(255,255,255,0.02)}
 
-    .container {
-      padding: 80px 10%;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .section-title {
-      font-size: 2em;
-      margin-bottom: 25px;
-      display: inline-block;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 60%;
-      height: 3px;
-      background: linear-gradient(90deg, #00bcd4, transparent);
-    }
-
-    /* ------------------ Navbar ------------------ */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 60px;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(0, 188, 212, 0.2);
-    }
-
-    nav div strong {
-      font-size: 1.3em;
-      letter-spacing: 1px;
-      color: #00bcd4;
-    }
-
-    nav a {
-      margin: 0 18px;
-      font-weight: 500;
-      position: relative;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      left: 0;
-      bottom: -4px;
-      background-color: #00bcd4;
-      transition: 0.3s;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* ------------------ Hero Section ------------------ */
+    /* ---------- Hero (canvas background) ---------- */
     .hero {
-      text-align: center;
-      padding: 100px 0 50px;
+      position:relative;
+      height:78vh;
+      min-height:520px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+      border-radius:18px;
+      margin:18px 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 18px 60px rgba(2,6,10,0.6);
     }
 
-    .hero h1 {
-      font-size: 2.8em;
-      color: #00bcd4;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
+    /* canvas full cover */
+    #hero-canvas{
+      position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;
     }
 
-    .hero p {
-      font-size: 1.2em;
-      color: #aaa;
-      letter-spacing: 0.5px;
+    /* content on hero */
+    .hero-content{position:relative;z-index:2;max-width:980px;padding:24px}
+    .eyebrow{color:var(--muted);font-weight:700;letter-spacing:1px;margin-bottom:12px;font-size:0.95rem}
+    h1{
+      font-size:3.2rem;
+      letter-spacing:1px;
+      color:#fff;
+      margin-bottom:12px;
+      line-height:1.02;
+    }
+    .tagline{color:var(--muted);font-size:1.05rem;margin-bottom:20px;max-width:820px;margin-left:auto;margin-right:auto}
+
+    .hero-ctas{display:flex;gap:14px;justify-content:center;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:10px;font-weight:700;
+      border:1px solid rgba(255,255,255,0.03);cursor:pointer;
+    }
+    .btn-primary{
+      background:linear-gradient(180deg,var(--accent),var(--accent-strong));
+      color:#0b0e10;
+      box-shadow: 0 8px 30px rgba(255,122,61,0.08);
+    }
+    .btn-outline{
+      background:transparent;color:var(--muted);
+    }
+    .btn:hover{transform:translateY(-4px);transition:all .18s ease}
+
+    /* ---------- Page sections ---------- */
+    main{max-width:var(--maxw);margin:36px auto;padding:0 20px}
+    .section{
+      display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;margin-bottom:30px;
+    }
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+      border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 10px 28px rgba(2,6,10,0.45);
+    }
+    .side{
+      display:flex;flex-direction:column;gap:14px;
+      position:sticky;top:100px;height:fit-content;
     }
 
-    /* ------------------ Lists ------------------ */
-    ul {
-      list-style: none;
-      padding: 0;
+    .section-title{
+      font-size:1.3rem;color:var(--accent);font-weight:800;margin-bottom:12px;letter-spacing:0.9px;
+    }
+    .muted{color:var(--muted)}
+
+    /* cards grid inside main left column */
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{
+      padding:14px;border-radius:10px;background:var(--panel);border:1px solid rgba(255,255,255,0.02);
+    }
+    .card h3{font-size:1rem;margin-bottom:8px}
+    .card p{color:var(--muted);font-size:0.95rem}
+
+    .single-cta {display:block;margin-top:16px;width:max-content}
+
+    /* achievements icons row */
+    .icons{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .icon{width:64px;height:64px;border-radius:8px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+
+    /* footer */
+    footer{text-align:center;color:var(--muted);padding:26px 0;margin-top:28px;font-size:0.95rem}
+
+    /* ---------- Small screens ---------- */
+    @media (max-width:980px){
+      .section{grid-template-columns:1fr;gap:16px}
+      .side{position:static}
+      .hero{height:62vh;min-height:420px}
+      h1{font-size:2rem}
+    }
+    @media (max-width:520px){
+      nav{padding:10px;gap:8px}
+      .navlinks a{margin:0 6px}
+      .cards{grid-template-columns:1fr}
+      .hero{height:56vh;min-height:360px}
+      h1{font-size:1.6rem}
     }
 
-    li {
-      margin-bottom: 12px;
-      line-height: 1.8;
-    }
-
-    /* ------------------ Achievements ------------------ */
-    .achievement-card {
-      text-align: center;
-      padding: 20px;
-      border-radius: 15px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: rgba(255, 255, 255, 0.03);
-      width: 230px;
-    }
-
-    .achievement-card img {
-      width: 120px;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      box-shadow: 0 0 15px rgba(0,188,212,0.3);
-      transition: all 0.3s ease;
-    }
-
-    .achievement-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 30px rgba(0,188,212,0.25);
-    }
-
-    .achievement-card:hover img {
-      transform: scale(1.1);
-    }
-
-    .achievement-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 60px;
-      flex-wrap: wrap;
-      margin-top: 40px;
-    }
-
-    /* ------------------ Contact Form ------------------ */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      max-width: 500px;
-      margin: 0 auto 80px;
-    }
-
-    .form-group {
-      position: relative;
-      width: 100%;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 14px 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(0, 188, 212, 0.3);
-      border-radius: 8px;
-      color: #fff;
-      font-size: 1rem;
-      outline: none;
-      transition: 0.3s ease;
-    }
-
-    .form-group label {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      color: #aaa;
-      font-size: 0.9rem;
-      pointer-events: none;
-      transition: 0.3s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: #00bcd4;
-      box-shadow: 0 0 8px rgba(0,188,212,0.4);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .form-group input:focus + label,
-    .form-group input:not(:placeholder-shown) + label,
-    .form-group textarea:focus + label,
-    .form-group textarea:not(:placeholder-shown) + label {
-      top: -10px;
-      left: 10px;
-      font-size: 0.8rem;
-      color: #00bcd4;
-      background: #000;
-      padding: 0 6px;
-    }
-
-    .btn-submit {
-      background-color: #ff465a;
-      color: #fff;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .btn-submit:hover {
-      background-color: #0097a7;
-      transform: translateY(-3px);
-      box-shadow: 0 0 10px rgba(0,188,212,0.4);
-    }
-
-    /* ------------------ Footer ------------------ */
-    footer {
-      text-align: center;
-      padding: 25px 0;
-      font-size: 0.9em;
-      color: #888;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      background: #010101;
-    }
+    /* subtle reveal */
+    .reveal{opacity:0;transform:translateY(10px);transition:all .6s ease}
+    .reveal.visible{opacity:1;transform:none}
   </style>
 </head>
 <body>
-  <nav>
-    <div><strong>Adwait Ahirekar</strong></div>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="resume.html">Resume</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
+  <div class="wrap" aria-hidden="true"></div>
+  <nav role="navigation" aria-label="Primary navigation">
+    <div class="brand">Adwait Ahirekar</div>
+    <div class="navlinks" role="menubar">
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="resume.html" role="menuitem">Resume</a>
+      <a href="projects.html" role="menuitem">Projects</a>
+      <a href="contact.html" role="menuitem">Contact</a>
     </div>
   </nav>
 
-  <div class="hero">
-    <h1>Adwait Ahirekar</h1>
-    <p>Junior Mechanical Engineer | Robotics & Automation Enthusiast</p>
-  </div>
+  <!-- HERO -->
+  <header class="hero" role="banner" aria-label="Intro">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
-  <div class="container" id="about">
-    <h2 class="section-title">About Me</h2>
-    <p>
-      I’m a Junior Mechanical Engineer passionate about robotics, design, and manufacturing.
-      Experienced with SolidWorks, AutoCAD, and hands-on manufacturing processes like 3D printing,
-      machining, and laser cutting. I enjoy turning mechanical ideas into working prototypes.
-    </p>
-  </div>
+    <div class="hero-content" role="article">
+      <div class="eyebrow">Mechanical Engineering Student</div>
+      <h1>Adwait Ahirekar</h1>
+      <div class="tagline">Mechanical Engineering Student | Robotics &amp; Automation Enthusiast.</div>
 
-  <div class="container" id="education">
-    <h2 class="section-title">Education</h2>
-    <ul>
-      <li><strong>Pimpri Chinchwad College of Engineering (PCCoE), Pune</strong> – Bachelor of Engineering, Mechanical (Present)</li>
-      <li>Vidya Valley North Point Junior College – HSC, 2023</li>
-      <li>St. Ursula High School – SSC, 2021</li>
-    </ul>
-  </div>
-
-  <div class="container" id="skills">
-    <h2 class="section-title">Skills</h2>
-    <ul>
-      <li><strong>Software:</strong> SolidWorks, AutoCAD, CATIA, Cura</li>
-      <li><strong>Manufacturing:</strong> 3D Printing, Lathe Machining, Laser Cutting, Engraving</li>
-      <li><strong>Soft Skills:</strong> Teamwork, Leadership, Self-learning</li>
-      <li><strong>Non-Technical:</strong> Marketing, Management</li>
-    </ul>
-  </div>
-
-  <div class="container" id="achievements">
-    <h2 class="section-title">Achievements</h2>
-    <div class="achievement-wrapper">
-      <div class="achievement-card">
-        <img src="https://roverchallenge.org/wp-content/uploads/2025/10/Short_White-1024x529.png" alt="IRC Logo">
-        <p><strong>International Rover Challenge (IRC) 2025</strong><br>BITS Goa — Ranked 19th Globally</p>
-      </div>
-
-      <div class="achievement-card">
-        <img src="https://i.ibb.co/qMDVFbQW/8b5907d6bee8c320e0bfb9dd017e62a0-x3.jpg" alt="Robocon Logo">
-        <p><strong>DD Robocon 2025</strong><br>IIT Delhi — AIR 9</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="projects.html">Projects</a>
+        <a class="btn btn-outline" href="resume.html">Resume</a>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="container" id="contact">
-    <h2 class="section-title">Contact Me</h2>
-    <p style="color:#aaa; max-width:600px; margin:10px auto 40px;">
-      Have a question, idea, or opportunity? Let’s collaborate — drop me a message below.
-    </p>
+  <!-- MAIN PREVIEW SECTIONS -->
+  <main>
+    <!-- About / Side -->
+    <section class="section">
+      <div class="panel reveal" id="about-panel">
+        <div class="section-title">About</div>
+        <p style="color:var(--muted);margin-bottom:12px">
+          I’m a Junior Mechanical Engineer passionate about robotics, design, and manufacturing.
+          Experienced with SolidWorks, AutoCAD, and hands-on manufacturing processes like 3D printing,
+          machining, and laser cutting. I enjoy turning mechanical ideas into working prototypes that
+          solve real problems.
+        </p>
 
-    <form class="contact-form" action="https://submit-form.com/bTq2wXn3N" method="POST">
-      <div class="form-group">
-        <input id="first-name" name="first-name" type="text" required />
-        <label for="first-name">First Name</label>
+        <div class="cards">
+          <div class="card">
+            <h3>Core Focus</h3>
+            <p class="muted">Mechanical design, rapid prototyping, mechanisms, and system-level integration for robotics.</p>
+          </div>
+          <div class="card">
+            <h3>Tools</h3>
+            <p class="muted">SolidWorks, AutoCAD, CATIA, Cura — familiar with CAM and basic machining setups.</p>
+          </div>
+          <div class="card">
+            <h3>Manufacturing</h3>
+            <p class="muted">3D printing (PETG/TPU), lathe work, laser cutting — hands-on assembly & testing.</p>
+          </div>
+          <div class="card">
+            <h3>Soft Skills</h3>
+            <p class="muted">Teamwork, leadership on build cycles, troubleshooting under time constraints.</p>
+          </div>
+        </div>
+
+        <a class="btn btn-outline single-cta" href="resume.html" aria-label="View full profile">View Full Profile →</a>
       </div>
-      <div class="form-group">
-        <input id="last-name" name="last-name" type="text" required />
-        <label for="last-name">Last Name</label>
+
+      <aside class="side reveal" id="about-side">
+        <div class="panel">
+          <div class="section-title">Quick Stats</div>
+          <p class="muted"><strong>College:</strong> Pimpri Chinchwad College of Engineering</p>
+          <p class="muted"><strong>Team:</strong> Team Automatons (Robotics Club)</p>
+          <p class="muted"><strong>Notable:</strong> IRC 2025 — Ranked 19th</p>
+          <div style="margin-top:12px">
+            <a class="btn btn-primary" href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="section-title">Achievements</div>
+          <div class="icons" aria-hidden="false">
+            <div class="icon" title="IRC 2025">IRC</div>
+            <div class="icon" title="DD Robocon">ROB</div>
+            <div class="icon" title="Team Automatons">TA</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Education / Skills -->
+    <section class="section">
+      <div class="panel reveal" id="edu-panel">
+        <div class="section-title">Education</div>
+        <p style="color:var(--muted);margin-bottom:8px"><strong>Pimpri Chinchwad College of Engineering (PCCoE), Pune</strong> — Bachelor of Engineering, Mechanical (Present)</p>
+        <p style="color:var(--muted);margin-bottom:8px"><strong>Vidya Valley North Point Junior College</strong> — HSC, 2023</p>
+        <p style="color:var(--muted);margin-bottom:8px"><strong>St. Ursula High School</strong> — SSC, 2021</p>
+
+        <a class="btn btn-outline single-cta" href="resume.html">View Resume →</a>
       </div>
-      <div class="form-group">
-        <textarea id="message" name="message" rows="5" required></textarea>
-        <label for="message">Message</label>
+
+      <aside class="side reveal" id="skills-side">
+        <div class="panel">
+          <div class="section-title">Skills</div>
+          <p class="muted"><strong>Software:</strong> SolidWorks, AutoCAD, CATIA, Cura</p>
+          <p class="muted"><strong>Manufacturing:</strong> 3D Printing, Lathe Machining, Laser Cutting, Engraving</p>
+          <p class="muted"><strong>Soft & Non-Technical:</strong> Teamwork, Leadership, Marketing</p>
+          <a class="btn btn-primary single-cta" href="projects.html">See Projects →</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Achievements / CTA -->
+    <section class="section">
+      <div class="panel reveal" id="ach-panel">
+        <div class="section-title">Selected Achievements</div>
+        <p class="muted"><strong>International Rover Challenge (IRC) 2025</strong> — BITS Goa — Ranked 19th Globally</p>
+        <p class="muted"><strong>DD Robocon 2025</strong> — IIT Delhi — AIR 9</p>
+
+        <a class="btn btn-outline single-cta" href="projects.html">See Work & Outcomes →</a>
       </div>
-      <button type="submit" class="btn-submit">Send Message</button>
-    </form>
-  </div>
+
+      <aside class="side reveal" id="cta-side">
+        <div class="panel">
+          <div class="section-title">Get in touch</div>
+          <p class="muted">For collaborations, sponsorships, or project queries — reach out via the Contact page.</p>
+          <a class="btn btn-primary single-cta" href="contact.html">Contact →</a>
+        </div>
+      </aside>
+    </section>
+
+  </main>
 
   <footer>
-    © 2025 Adwait Ahirekar | Designed with passion for mechanics & robotics
+    © 2025 Adwait Ahirekar | Built for GitHub Pages — Steel gray & soft orange theme
   </footer>
+
+  <!-- ---------- JS: Canvas hero + reveal on scroll ---------- -->
+  <script>
+    /* ---------- Hero canvas: subtle 3D wire/grid effect ---------- */
+    (function(){
+      const canvas = document.getElementById('hero-canvas');
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+      const ctx = canvas.getContext('2d');
+
+      let W, H, cols, rows, spacing;
+      let t = 0;
+
+      function resize(){
+        W = canvas.clientWidth;
+        H = canvas.clientHeight;
+        canvas.width = Math.floor(W * dpr);
+        canvas.height = Math.floor(H * dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+        spacing = Math.max(32, Math.min(70, Math.floor(W/18)));
+        cols = Math.ceil(W/spacing) + 3;
+        rows = Math.ceil(H/spacing) + 3;
+      }
+
+      function iso(x,y,z){
+        // simple isometric projection-ish (for subtle 3D feel)
+        const angle = Math.PI/6;
+        const X = x * Math.cos(angle) - z * Math.cos(angle);
+        const Y = x * Math.sin(angle) + z * Math.sin(angle) - y;
+        return [X, Y];
+      }
+
+      function draw(){
+        ctx.clearRect(0,0,W,H);
+
+        // background wash
+        const g = ctx.createLinearGradient(0,0,0,H);
+        g.addColorStop(0, 'rgba(10,12,14,0.7)');
+        g.addColorStop(1, 'rgba(8,9,10,0.85)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0,0,W,H);
+
+        // draw sin-wave offset grid (wireframe)
+        ctx.save();
+        ctx.translate(W/2, H/2 + 30);
+        ctx.lineWidth = 1.1;
+        for(let r = -rows/2; r < rows/2; r++){
+          ctx.beginPath();
+          for(let c = -cols/2; c < cols/2; c++){
+            const x = c * spacing;
+            const y = r * spacing;
+            // animate 'height' value per point
+            const noise = Math.sin((c*0.5 + r*0.9) * 0.6 + t*0.9) * 18
+                        + Math.cos((c*0.8 - r*0.3) * 0.6 + t*0.6) * 10;
+            const z = noise * 0.8;
+            const [px, py] = iso(x, y, z);
+            const sx = px;
+            const sy = py * 0.6; // squash vertical
+            if(c === -Math.floor(cols/2)) ctx.moveTo(sx, sy);
+            else ctx.lineTo(sx, sy);
+          }
+          // stroke style: subtle blue/gray lines
+          ctx.strokeStyle = 'rgba(127,166,176,0.08)';
+          ctx.stroke();
+          ctx.closePath();
+        }
+
+        // emphasize center ridge line
+        ctx.beginPath();
+        for(let r = -rows/2; r < rows/2; r++){
+          const c = 0;
+          const x = c * spacing;
+          const y = r * spacing;
+          const noise = Math.sin((c*0.5 + r*0.9) * 0.6 + t*0.9) * 18;
+          const z = noise * 1.0 + 12;
+          const [px, py] = iso(x, y, z);
+          const sx = px;
+          const sy = py * 0.6;
+          if(r === -Math.floor(rows/2)) ctx.moveTo(sx, sy);
+          else ctx.lineTo(sx, sy);
+        }
+        ctx.strokeStyle = 'rgba(255,122,61,0.08)';
+        ctx.lineWidth = 2.2;
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.restore();
+
+        t += 0.016;
+        requestAnimationFrame(draw);
+      }
+
+      function start(){
+        resize();
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      start();
+
+      // subtle parallax on mouse move for depth
+      const hero = document.querySelector('.hero');
+      hero.addEventListener('mousemove', (e)=>{
+        const rx = (e.clientX / window.innerWidth - 0.5) * 0.8;
+        const ry = (e.clientY / window.innerHeight - 0.5) * 0.8;
+        canvas.style.transform = `translate(${rx*8}px, ${ry*6}px)`;
+      });
+      hero.addEventListener('mouseleave', ()=> canvas.style.transform = '');
+    })();
+
+    /* ---------- Reveal on scroll (small) ---------- */
+    (function(){
+      const r = Array.from(document.querySelectorAll('.reveal'));
+      const onScroll = () => {
+        const top = window.innerHeight;
+        r.forEach(el=>{
+          const rect = el.getBoundingClientRect();
+          if(rect.top < top - 80) el.classList.add('visible');
+        });
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, {passive:true});
+    })();
+
+    /* ---------- Accessibility: focus outlines for keyboard users ---------- */
+    (function(){
+      document.body.addEventListener('keydown', (e)=>{
+        if(e.key === 'Tab') document.documentElement.classList.add('show-focus');
+      }, {once:true});
+    })();
+  </script>
 </body>
 </html>
+

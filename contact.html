@@ -13,26 +13,22 @@
       color: #fff;
     }
 
-    nav {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 20px 50px;
-      background: rgba(0, 0, 0, 0.85);
-      position: sticky;
-      top: 0;
+    /* Navbar copied exactly from index.html */
+    nav{
+      width:calc(100% - 40px);
+      margin:12px auto;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;padding:12px 18px;border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,255,255,0.02);
+      position:sticky;top:12px;z-index:50;
+      backdrop-filter: blur(6px);
     }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 500;
-    }
-
-    nav a:hover, nav a.active {
-      color: #00bcd4;
-    }
+    .brand{font-weight:700;color:#e63946;letter-spacing:0.6px}
+    .navlinks{display:flex;gap:18px}
+    .navlinks a{color:#b6b9bb;font-weight:600;padding:8px;border-radius:8px;text-decoration:none}
+    .navlinks a:hover{color:#fff;background:rgba(255,255,255,0.02)}
+    .navlinks a.active{color:#fff;background:rgba(255,255,255,0.02)}
 
     .contact-header {
       text-align: center;
@@ -129,11 +125,15 @@
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="resume.html">Resume</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html" class="active">Contact</a>
+  <!-- Updated navbar -->
+  <nav role="navigation" aria-label="Primary navigation">
+    <div class="brand">Adwait Ahirekar</div>
+    <div class="navlinks" role="menubar">
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="resume.html" role="menuitem">Resume</a>
+      <a href="projects.html" role="menuitem">Projects</a>
+      <a href="contact.html" role="menuitem" class="active">Contact</a>
+    </div>
   </nav>
 
   <section class="contact-header">
